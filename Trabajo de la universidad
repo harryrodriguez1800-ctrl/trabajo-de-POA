@@ -1,0 +1,85 @@
+# Sistema de registro de estudiantes
+
+estudiantes = []
+
+def registrar_estudiante():
+    nombre = input("Ingrese el nombre del estudiante: ")
+    nota = float(input("Ingrese la nota del estudiante: "))
+
+    estudiante = {
+        "nombre": nombre,
+        "nota": nota
+    }
+
+    estudiantes.append(estudiante)
+    print("Estudiante registrado correctamente\n")
+
+
+def mostrar_estudiantes():
+    if len(estudiantes) == 0:
+        print("No hay estudiantes registrados\n")
+    else:
+        print("\nLista de estudiantes:")
+        for e in estudiantes:
+            print(f"Nombre: {e['nombre']} - Nota: {e['nota']}")
+        print()
+
+
+def calcular_promedio():
+    if len(estudiantes) == 0:
+        print("No hay datos para calcular promedio\n")
+    else:
+        suma = 0
+        for e in estudiantes:
+            suma += e["nota"]
+
+        promedio = suma / len(estudiantes)
+        print(f"Promedio general: {promedio:.2f}\n")
+
+
+def mejor_estudiante():
+    if len(estudiantes) == 0:
+        print("No hay estudiantes registrados\n")
+    else:
+        mejor = estudiantes[0]
+
+        for e in estudiantes:
+            if e["nota"] > mejor["nota"]:
+                mejor = e
+
+        print(f"Mejor estudiante: {mejor['nombre']}")
+        print(f"Nota: {mejor['nota']}\n")
+
+
+def menu():
+    while True:
+        print("===== MENÚ =====")
+        print("1. Registrar estudiante")
+        print("2. Mostrar estudiantes")
+        print("3. Calcular promedio")
+        print("4. Mejor estudiante")
+        print("5. Salir")
+
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            registrar_estudiante()
+
+        elif opcion == "2":
+            mostrar_estudiantes()
+
+        elif opcion == "3":
+            calcular_promedio()
+
+        elif opcion == "4":
+            mejor_estudiante()
+
+        elif opcion == "5":
+            print("Programa finalizado")
+            break
+
+        else:
+            print("Opción inválida\n")
+
+
+menu()
